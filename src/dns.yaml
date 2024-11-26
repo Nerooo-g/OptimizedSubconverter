@@ -1,0 +1,49 @@
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  use-system-hosts: false
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - +.lan
+    - +.local
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - localhost.work.weixin.qq.com
+  default-nameserver:
+    - 223.5.5.5
+    - 1.1.1.1
+    - 8.8.4.4
+#  nameserver:
+#    - https://dns.alidns.com/dns-query
+#    - https://doh.pub/dns-query
+#    - https://1.1.1.1/dns-query
+#    - https://1.0.0.1/dns-query
+#    - https://208.67.222.222/dns-query
+#    - https://208.67.220.220/dns-query
+#    - https://194.242.2.2/dns-query
+#    - https://194.242.2.3/dns-query
+#  proxy-server-nameserver:
+#    - https://dns.alidns.com/dns-query
+#    - https://doh.pub/dns-query
+#    - https://1.1.1.1/dns-query
+#    - https://1.0.0.1/dns-query
+#    - https://208.67.222.222/dns-query
+#    - https://208.67.220.220/dns-query
+#    - https://194.242.2.2/dns-query
+#    - https://194.242.2.3/dns-query
+#  nameserver-policy:
+#    geosite:private,cn,geolocation-cn:
+#      - https://dns.alidns.com/dns-query
+#      - https://doh.pub/dns-query
+#    geosite:google,youtube,telegram,gfw,geolocation-!cn:
+#      - https://1.1.1.1/dns-query
+#      - https://1.0.0.1/dns-query
+#      - https://208.67.222.222/dns-query
+#      - https://208.67.220.220/dns-query
+#      - https://194.242.2.2/dns-query
+#      - https://194.242.2.3/dns-query

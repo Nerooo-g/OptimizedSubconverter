@@ -1,0 +1,394 @@
+mixed-port: 7890
+allow-lan: true
+log-level: info
+external-controller: :9090
+mode: rule
+
+proxy-providers:
+
+proxy-groups:
+  # 功能分组
+  - name: Proxies
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png
+    type: select
+    proxies: &proxies
+      - Auto
+      - Manual
+      - HK 香港
+      - TW 台湾
+      - SG 新加坡
+      - JP 日本
+      - US 美国
+      - DIRECT
+
+  - name: Apple
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+    type: select
+    proxies: *proxies
+
+  - name: Bilibili
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
+    type: select
+    proxies: *proxies
+
+  - name: Crypto
+    icon: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/bitcoin.png
+    type: select
+    proxies: *proxies
+
+  - name: Telegram
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+    type: select
+    proxies: *proxies
+
+  - name: Spotify
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png
+    type: select
+    proxies: *proxies
+
+  - name: Microsoft
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
+    type: select
+    proxies: *proxies
+
+  - name: YouTube
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png
+    type: select
+    proxies: *proxies
+
+  - name: Netflix
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Netflix.png
+    type: select
+    proxies: *proxies
+
+  - name: Game
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Steam.png
+    type: select
+    proxies: *proxies
+
+  - name: Google
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png
+    type: select
+    proxies: *proxies
+
+  - name: LLM
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AI.png
+    type: select
+    proxies: *proxies
+
+  - name: Final
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
+    type: select
+    proxies:
+      - Proxies
+      - DIRECT
+
+  # 基于地区分组
+  - name: HK 香港
+    filter: "港|🇭🇰|HK|(?i)Hong"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
+    interval: 300
+    lazy: true
+    tolerance: 50
+    timeout: 5000
+    type: url-test
+    include-all: true
+
+  - name: TW 台湾
+    filter: "台|🇨🇳|🇹🇼|湾|TW|(?i)Taiwan"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png
+    interval: 300
+    lazy: true
+    tolerance: 50
+    timeout: 5000
+    type: url-test
+    include-all: true
+
+  - name: SG 新加坡
+    filter: "新加坡|坡|狮城|🇸🇬|SG|(?i)Singapore"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
+    interval: 300
+    lazy: true
+    tolerance: 50
+    timeout: 5000
+    type: url-test
+    include-all: true
+
+  - name: JP 日本
+    filter: "日|🇯🇵|东京|JP|(?i)Japan"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
+    interval: 300
+    lazy: true
+    tolerance: 50
+    timeout: 5000
+    type: url-test
+    include-all: true
+
+  - name: US 美国
+    filter: "美|🇺🇲|US|(?i)States|American"
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
+    interval: 300
+    lazy: true
+    tolerance: 50
+    timeout: 5000
+    type: url-test
+    include-all: true
+
+  - name: Auto
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Auto.png
+    interval: 600
+    lazy: true
+    timeout: 5000
+    type: url-test
+    include-all: true
+
+  - name: Manual
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Static.png
+    lazy: true
+    type: select
+    include-all: true
+
+rules:
+  # Crypto
+  - DOMAIN-KEYWORD,bitget,Crypto
+  - DOMAIN-KEYWORD,binance,Crypto
+  - DOMAIN-KEYWORD,okx,Crypto
+  - RULE-SET,crypto,Crypto
+
+  # Bilibili
+  - IP-CIDR,45.43.32.234/32,Bilibili,no-resolve
+  - IP-CIDR,119.29.29.29/32,Bilibili,no-resolve
+  - IP-CIDR,128.1.62.200/32,Bilibili,no-resolve
+  - IP-CIDR,128.1.62.201/32,Bilibili,no-resolve
+  - IP-CIDR,150.116.92.250/32,Bilibili,no-resolve
+  - IP-CIDR,164.52.76.18/32,Bilibili,no-resolve
+  - IP-CIDR,203.107.1.33/32,Bilibili,no-resolve
+  - IP-CIDR,203.107.1.34/32,Bilibili,no-resolve
+  - IP-CIDR,203.107.1.65/32,Bilibili,no-resolve
+  - IP-CIDR,203.107.1.66/32,Bilibili,no-resolve
+  - RULE-SET,bilibili,Bilibili
+
+  # LLM
+  - DOMAIN-KEYWORD,openai,LLM
+  - RULE-SET,llm,LLM
+
+  # Netflix
+  - DOMAIN-KEYWORD,apiproxy-device-prod-nlb-,Netflix
+  - DOMAIN-KEYWORD,dualstack.apiproxy-,Netflix
+  - DOMAIN-KEYWORD,dualstack.ichnaea-web-,Netflix
+  - DOMAIN-KEYWORD,netflixdnstest,Netflix
+  - PROCESS-NAME,com.netflix.mediaclient,Netflix
+  - RULE-SET,netflix_domain,Netflix
+  - RULE-SET,netflix_ip,Netflix
+
+  # Spotify
+  - DOMAIN-KEYWORD,spotify,Spotify
+  - PROCESS-NAME,com.spotify.music,Spotify
+  - DOMAIN-KEYWORD,-spotify-com,Spotify
+  - IP-CIDR,104.154.127.126/32,Spotify,no-resolve
+  - IP-CIDR,35.186.224.47/32,Spotify,no-resolve
+  - RULE-SET,spotify,Spotify
+
+  # Telegram
+  - IP-ASN,44907,Telegram,no-resolve
+  - IP-ASN,62014,Telegram,no-resolve
+  - IP-ASN,62041,Telegram,no-resolve
+  - IP-ASN,59930,Telegram,no-resolve
+  - IP-ASN,211157,Telegram,no-resolve
+  # - PROCESS-NAME,Telegram.exe,选择代理
+  # - PROCESS-NAME,Telegram,选择代理
+  - RULE-SET,tg_domain,Telegram
+  - RULE-SET,tg_ip,Telegram,no-resolve
+
+  # Apple
+  - IP-CIDR,139.178.128.0/18,Apple,no-resolve
+  - IP-CIDR,144.178.0.0/19,Apple,no-resolve
+  - IP-CIDR,144.178.36.0/22,Apple,no-resolve
+  - IP-CIDR,144.178.48.0/20,Apple,no-resolve
+  - IP-CIDR,17.0.0.0/8,Apple,no-resolve
+  - IP-CIDR,192.35.50.0/24,Apple,no-resolve
+  - IP-CIDR,198.183.17.0/24,Apple,no-resolve
+  - IP-CIDR,205.180.175.0/24,Apple,no-resolve
+  - IP-CIDR,63.92.224.0/19,Apple,no-resolve
+  - IP-CIDR,65.199.22.0/23,Apple,no-resolve
+  - PROCESS-NAME,CoreLocationAgent,Apple
+  - PROCESS-NAME,WeatherWidget,Apple
+  - PROCESS-NAME,apsd,Apple
+  - PROCESS-NAME,com.apple.Maps,Apple
+  - PROCESS-NAME,findmydevice-user-agent,Apple
+  - PROCESS-NAME,fmfd,Apple
+  - PROCESS-NAME,mapspushd,Apple
+  - PROCESS-NAME,netbiosd,Apple
+  - PROCESS-NAME,trustd,Apple
+  - PROCESS-NAME,com.apple.geod,Apple
+  - DOMAIN-KEYWORD,apple-support.akadns.net,Apple
+  - DOMAIN-KEYWORD,apple.com.akadns.net,Apple
+  - DOMAIN-KEYWORD,apple.com.edgekey.net,Apple
+  - DOMAIN-KEYWORD,buy.itunes.apple.com,Apple
+  - DOMAIN-KEYWORD,smp-device,Apple
+  - DOMAIN-KEYWORD,testflight,Apple
+  - DOMAIN-KEYWORD,icloud.com.akadns.net,Apple
+  - RULE-SET,apple,Apple
+
+  # YouTube
+  - DOMAIN-KEYWORD,youtube,YouTube
+  - RULE-SET,youtube,YouTube
+  # Google
+  - DOMAIN-KEYWORD,appspot,Google
+  - DOMAIN-KEYWORD,blogspot,Google
+  - DOMAIN-KEYWORD,gmail,Google
+  - DOMAIN-KEYWORD,google,Google
+  - DOMAIN-KEYWORD,gstatic,Google
+  - DOMAIN-KEYWORD,recaptcha,Google
+  - IP-CIDR,172.110.32.0/21,Google
+  - IP-CIDR,173.194.0.0/16,Google
+  - IP-CIDR,216.73.80.0/20,Google
+  - IP-CIDR,74.125.0.0/16,Google
+  - IP-CIDR6,2620:120:e000::/40,Google
+  - PROCESS-NAME,com.android.vending,Google
+  - PROCESS-NAME,com.google.android.gms,Google
+  - PROCESS-NAME,com.google.android.gsf,Google
+  - PROCESS-NAME,com.google.android.play.games,Google
+  - PROCESS-NAME,googledrivefs.exe,Google
+  - PROCESS-NAME,backupandsync,Google
+  - RULE-SET,google,Google
+
+  # Microsoft
+  - DOMAIN-KEYWORD,microsoft,Microsoft
+  - DOMAIN-KEYWORD,1drv,Microsoft
+  - RULE-SET,microsoft,Microsoft
+
+  # Game
+  - RULE-SET,game,Game
+
+  # Direct
+  - IP-ASN,132203,DIRECT # Tencent
+  - DOMAIN-KEYWORD,-cn,DIRECT
+  - DOMAIN-KEYWORD,360buy,DIRECT
+  - DOMAIN-KEYWORD,alicdn,DIRECT
+  - DOMAIN-KEYWORD,alimama,DIRECT
+  - DOMAIN-KEYWORD,alipay,DIRECT
+  - DOMAIN-KEYWORD,appzapp,DIRECT
+  - DOMAIN-KEYWORD,baidupcs,DIRECT
+  - DOMAIN-KEYWORD,bilibili,DIRECT
+  - DOMAIN-KEYWORD,ccgslb,DIRECT
+  - DOMAIN-KEYWORD,chinacache,DIRECT
+  - DOMAIN-KEYWORD,duobao,DIRECT
+  - DOMAIN-KEYWORD,jdpay,DIRECT
+  - DOMAIN-KEYWORD,moke,DIRECT
+  - DOMAIN-KEYWORD,qhimg,DIRECT
+  - DOMAIN-KEYWORD,vpimg,DIRECT
+  - DOMAIN-KEYWORD,xiami,DIRECT
+  - DOMAIN-KEYWORD,xiaomi,DIRECT
+  - RULE-SET,direct,DIRECT
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+
+  # Final
+  - MATCH,Final
+
+dns:
+  default-nameserver:
+    - 223.5.5.5
+    - 1.1.1.1
+    - 8.8.4.4
+
+rule-providers:
+  crypto:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Crypto.txt
+    proxy: Proxies
+  bilibili:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Bilibili.txt
+    proxy: Proxies
+  llm:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/LLM.txt
+    proxy: Proxies
+  netflix_domain:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Netflix_Domain.txt
+    proxy: Proxies
+  netflix_ip:
+    type: http
+    behavior: ipcidr
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Netflix_IP.txt
+    proxy: Proxies
+  spotify:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Spotify.txt
+    proxy: Proxies
+  tg_domain:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Telegram_Domain.txt
+    proxy: Proxies
+  tg_ip:
+    type: http
+    behavior: ipcidr
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Telegram_IP.txt
+    proxy: Proxies
+  apple:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Apple.txt
+    proxy: Proxies
+  microsoft:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Microsoft.txt
+    proxy: Proxies
+  youtube:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Youtube.txt
+    proxy: Proxies
+  google:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Google.txt
+    proxy: Proxies
+  game:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Game.txt
+    proxy: Proxies
+  direct:
+    type: http
+    behavior: domain
+    interval: 86400
+    format: text
+    url: https://raw.githubusercontent.com/Nerooo-g/Rules/refs/heads/main/Clash/RULE-SET/Direct.txt
+    proxy: Proxies
