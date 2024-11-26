@@ -186,7 +186,7 @@ int main() {
             // 根据协议选择客户端构造
             httplib::Client cli(protocol+"://"+host);
             if (protocol == "https") {
-                cli.enable_server_certificate_verification(false); // 如果有自签名证书或开发测试环境，请禁用检验证书
+                cli.enable_server_certificate_verification(false);
             }
             if (auto res = cli.Head(path)) {
                 if (res->has_header("subscription-userinfo")) {
