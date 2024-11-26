@@ -13,7 +13,7 @@ I am developing a Cpp-based tool designed for creating and customizing self-cons
 
 **Development Stage:**
   
-* As I am currently in the early stages of development, our focus is on building a strong foundational architecture. During this phase, I am not addressing external feedback or resolving issues outside the scope of our initial design objectives. Our goal is to ensure a stable and reliable core before expanding its capabilities.
+* As I am currently in the early stages of development, my focus is on building a strong foundational architecture. During this phase, I am not addressing external feedback or resolving issues outside the scope of my initial design objectives. My goal is to ensure a stable and reliable core before expanding its capabilities.
 
 **Future Prospects:**
 
